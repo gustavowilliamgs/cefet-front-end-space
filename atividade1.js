@@ -19,4 +19,27 @@ let indiceDaFotoAtual = 0;
 // ...COMECE a implementar aqui <--------------------------------------------
 
 
+const btnProximoEl = document.querySelector("#proximo");
+const btnAnteriorEl = document.querySelector("#anterior");
 
+const imgEl = document.querySelector("#slide");
+
+function alterarImagens(evento) {
+  indiceDaFotoAtual += evento;
+
+  if (indiceDaFotoAtual > nomesDasImagens.length - 1) {
+    indiceDaFotoAtual = 0;
+  } else if (indiceDaFotoAtual < 0) {
+    indiceDaFotoAtual = nomesDasImagens.length - 1;
+  }
+
+  imgEl.src = servidorDasImagens + nomesDasImagens[indiceDaFotoAtual];
+}
+
+btnProximoEl.addEventListener("click", () => {
+  alterarImagens(1);
+});
+
+btnAnteriorEl.addEventListener("click", () => {
+  alterarImagens(-1);
+});
